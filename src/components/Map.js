@@ -27,7 +27,7 @@ export default class Map extends Component {
     componentDidMount() {
         const { data, api_url } = this.state;
 
-        if(!data) {
+        if (!data) {
             fetch(api_url, { method: 'GET' })
             .then(response => response.json())
             .then(response => this.setState({ data: response }));
@@ -35,7 +35,7 @@ export default class Map extends Component {
     }
 
     render() {
-    const { coords, data } = this.state;
+        const { data } = this.state;
 
         return (
             <MapGL
@@ -44,7 +44,7 @@ export default class Map extends Component {
         onViewportChange={viewport => this.setState({ viewport })}>
 
         {data && data.map((coord, i) => (
-            <Marker key={`Marker-${i * (Math.random() * 200 + 1)}`} latitude={coord.location.latitude} longitude={coord.location.longitude}>
+            <Marker key={`Marker-${i * (Math.random() * 200 + 1)}`} latitude={coord.latitude} longitude={coord.longitude}>
                 <Pin />
             </Marker>
         ))}
