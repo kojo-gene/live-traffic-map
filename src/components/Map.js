@@ -35,7 +35,7 @@ export default class Map extends Component {
     }
 
     render() {
-        const { data } = this.state;
+        const { coords, data } = this.state;
 
         return (
             <MapGL
@@ -44,7 +44,9 @@ export default class Map extends Component {
         onViewportChange={viewport => this.setState({ viewport })}>
 
         {data && data.map((coord, i) => (
-            <Marker key={`Marker-${i * (Math.random() * 200 + 1)}`} latitude={coord.latitude} longitude={coord.longitude}>
+            <Marker key={`Marker-${i * (Math.random() * 200 + 1)}`} 
+            latitude={coord.location.latitude} 
+            longitude={coord.location.longitude}>
                 <Pin />
             </Marker>
         ))}
