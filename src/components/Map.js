@@ -10,9 +10,9 @@ export default class Map extends Component {
             api_url: 'https://data.edmonton.ca/resource/87ck-293k.json',
             viewport: {
                 width: 1100,
-                height: 600,
+                height: 400,
                 zoom: 11,
-                latitude:47.608013, 
+                latitude: 47.608013, 
                 longitude: -122.335167,
             },
             coords: [
@@ -35,16 +35,17 @@ export default class Map extends Component {
     }
 
     render() {
-        const { coords, data } = this.state;
+        const { data } = this.state;
 
         return (
             <MapGL
             mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        {...this.state.viewport}
+            {...this.state.viewport}
         onViewportChange={viewport => this.setState({ viewport })}>
 
         {data && data.map((coord, i) => (
-            <Marker key={`Marker-${i * (Math.random() * 200 + 1)}`} 
+            <Marker 
+            key={(Math.random() * 200 + 1)}
             latitude={coord.location.latitude} 
             longitude={coord.location.longitude}>
                 <Pin />
